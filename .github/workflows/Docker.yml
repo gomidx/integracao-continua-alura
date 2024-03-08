@@ -18,5 +18,11 @@ jobs:
       with:
         username: lucasgomide
         password: ${{ secrets.DOCKER_HUB_PASSWORD }}
-          
-      
+
+    - name: Build and push Docker images
+      uses: docker/build-push-action@v5.2.0
+      with:
+        context: .
+        file: ./Dockerfile
+        push: true
+        tags: lucasgomide/go_ci:${{ github.ref_name }}
